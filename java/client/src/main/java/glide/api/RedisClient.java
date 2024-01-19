@@ -117,6 +117,7 @@ public class RedisClient extends BaseClient
      * @see <a href="https://redis.io/commands/info/">redis.io</a> for details.
      * @return CompletableFuture with the response
      */
+    @Override
     public CompletableFuture<Map> info() {
         Command command = Command.builder().requestType(Command.RequestType.INFO).build();
         return commandManager.submitNewCommand(command, ResponseHandlers::handleMapResponse);
@@ -130,6 +131,7 @@ public class RedisClient extends BaseClient
      *     retrieve. When no parameter is provided, the default option is assumed.
      * @return CompletableFuture with the response
      */
+    @Override
     public CompletableFuture<Map> info(InfoOptions options) {
         Command command =
                 Command.builder()
@@ -146,6 +148,7 @@ public class RedisClient extends BaseClient
      * @param key - The key to retrieve from the database.
      * @return If `key` exists, returns the value of `key` as a string. Otherwise, return null
      */
+    @Override
     public CompletableFuture<String> get(String key) {
         Command command =
                 Command.builder()
@@ -163,6 +166,7 @@ public class RedisClient extends BaseClient
      * @param value - The value to store with the given key.
      * @return null
      */
+    @Override
     public CompletableFuture<Void> set(String key, String value) {
         Command command =
                 Command.builder()
@@ -182,6 +186,7 @@ public class RedisClient extends BaseClient
      * @return string or null If value isn't set because of `onlyIfExists` or `onlyIfDoesNotExist`
      *     conditions, return null. If `returnOldValue` is set, return the old value as a string.
      */
+    @Override
     public CompletableFuture<String> set(String key, String value, SetOptions options) {
         Command command =
                 Command.builder()
